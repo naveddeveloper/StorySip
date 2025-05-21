@@ -7,7 +7,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object('config.DevelopmentConfig')  
 
-    db = SQLAlchemy(app)
+    db = SQLAlchemy()
     login_manager = LoginManager()
 
     db.init_app(app)
