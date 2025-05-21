@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Home - Flask Blog{% endblock %}
+{% block content %}
+<h1>Recent Posts</h1>
+{% for post in posts %}
+    <article>
+        <h2><a href="{{ url_for('blog.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+        <p>By {{ post.author.username }} on {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+        <p>{{ post.content[:200] }}...</p>
+    </article>
+{% else %}
+    <p>No posts yet.</p>
+{% endfor %}
+{% endblock %}
