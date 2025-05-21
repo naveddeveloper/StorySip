@@ -7,6 +7,7 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 
 
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object('config.DevelopmentConfig')  
@@ -16,6 +17,9 @@ def create_app():
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # or your DB URIflask db migrate -m "Initial migration"
     migrate = Migrate(app, db)
+
+    with app.app_context():
+        db.create_all()
 
 
     from .routes.blog_routes import blog
